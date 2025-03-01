@@ -431,6 +431,9 @@ pub const Renderer = opaque {
     pub const destroy = destroyRenderer;
     pub const present = renderPresent;
     pub const debugText = renderDebugText;
+    pub const setDrawColor = setRenderDrawColor;
+    pub const clear = renderClear;
+    pub const setScale = setRenderScale;
 };
 
 /// Get the number of 2D rendering drivers available for the current display.
