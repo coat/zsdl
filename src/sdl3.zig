@@ -529,8 +529,10 @@ pub fn renderClear(r: *Renderer) !void {
 }
 extern fn SDL_RenderClear(r: *Renderer) i32;
 
-pub const renderPresent = SDL_RenderPresent;
-extern fn SDL_RenderPresent(r: *Renderer) void;
+pub fn renderPresent(r: *Renderer) Error!void {
+    if (SDL_RenderPresent(r) == False) return makeError();
+}
+extern fn SDL_RenderPresent(r: *Renderer) Bool;
 
 pub fn renderTexture(
     r: *Renderer,
