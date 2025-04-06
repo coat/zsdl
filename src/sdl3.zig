@@ -390,6 +390,7 @@ pub const Texture = opaque {
     pub const destroy = destroyTexture;
     pub const lock = lockTexture;
     pub const unlock = unlockTexture;
+    pub const setScaleMode = setTextureScaleMode;
 };
 
 pub const destroyTexture = SDL_DestroyTexture;
@@ -418,6 +419,12 @@ extern fn SDL_LockTexture(
 
 pub const unlockTexture = SDL_UnlockTexture;
 extern fn SDL_UnlockTexture(texture: *Texture) void;
+
+pub fn setTextureScaleMode(texture: *Texture, scale_mode: ScaleMode) !void {
+    if (SDL_SetTextureScaleMode(texture, scale_mode) == false) return makeError();
+}
+
+extern fn SDL_SetTextureScaleMode(texture: *Texture, scale_mode: ScaleMode) bool;
 
 pub const Renderer = opaque {
     pub const Flags = packed struct(u32) {
